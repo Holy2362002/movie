@@ -18,14 +18,14 @@ async function fetchMovies(id: string): Promise<MovieType[]> {
 export default async function Genre({
     params,
 }: {
-    params: Promise<{ id: string; name: string }>;
+    params: Promise<{ movie: string; id: string }>;
 }) {
-    const { id, name } = await params;
+    const { id, movie: genreName } = await params;
     const movies = await fetchMovies(id);
 
     return (
         <div>
-            <h2 className="text-lg font-bold pb-2 mb-4 border-b">{name}</h2>
+            <h2 className="text-lg font-bold pb-2 mb-4 border-b">{genreName}</h2>
             <div className="flex flex-wrap gap-4">
                 {movies.map(movie => {
                     return (
