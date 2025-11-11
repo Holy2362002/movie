@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Movie Explorer (Next.js + TMDB)
 
-## Getting Started
+A simple movie browsing app built with Next.js App Router that fetches data from The Movie Database (TMDB). It lists movies by genre and shows movie detail pages with cast information. Missing images are handled with clean Tailwind placeholders.
 
-First, run the development server:
+## Features
+
+- Movie detail page with backdrop, overview, and cast
+- Genre-based discovery page
+- Client-side navigation with `Link`
+- Tailwind CSS styling with responsive fallbacks when images are unavailable
+- TypeScript types for movies and people
+
+## Tech Stack
+
+- Next.js (App Router, TypeScript)
+- Tailwind CSS
+- TMDB API v3 (using Bearer token header)
+
+## Prerequisites
+
+- Node.js 18+
+- TMDB account and a Read Access Token (v4)
+
+## Environment Variables
+
+Create a `.env.local` file in the project root:
+
+```bash
+TMDB_KEY=YOUR_TMDB_V4_READ_ACCESS_TOKEN
+```
+
+Notes:
+- This token is used in an Authorization header as `Bearer ${process.env.TMDB_KEY}`.
+- Image base URLs used:
+  - Posters/Profiles: `http://image.tmdb.org/t/p/w185`
+  - Backdrops: `http://image.tmdb.org/t/p/w1280`
+
+## Installation
+
+```bash
+npm install
+```
+
+## Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build and Start
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `dev`: Start the Next.js development server
+- `build`: Build for production
+- `start`: Run the production build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+app/
+  genre/[movie]/[id]/page.tsx   # Discover movies by genre
+  movie/[id]/page.tsx           # Movie details + cast
+components/
+  movie.tsx                     # Movie card used on lists
+types/
+  global.ts                     # Shared TypeScript types
+```
 
-## Deploy on Vercel
+## Image Fallbacks
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+When a backdrop, poster, or profile image is not available, the UI renders a Tailwind-based placeholder (neutral background, subtle border, rounded corners, and an icon + text). This keeps layouts consistent and avoids layout shift.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+
+- Rate limits and availability are governed by TMDB. Ensure your token has proper access.
+- For production, consider using Next Image (`next/image`) with TMDB image domains configured for optimization.
+
+## License
+
+MIT
