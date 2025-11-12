@@ -9,6 +9,7 @@ import type { GenreType } from "@/types/global";
 import { Input } from "@/components/ui/input";
 import { redirect } from "next/navigation";
 import TvShowDropdown from "@/app/Menu/dropDown";
+import PeoDrop from "./Menu/peoDropDrown";
 
 async function fetchGenres(): Promise<GenreType[]> {
     const res = await fetch("https://api.themoviedb.org/3/genre/movie/list", {
@@ -64,6 +65,7 @@ export default async function RootLayout({
                                 Next Movie
                             </h1>
                             <TvShowDropdown />
+                            <PeoDrop/>
                         </div>
                         
                         <form
@@ -81,11 +83,11 @@ export default async function RootLayout({
                             <Button
                                 asChild
                                 variant="outline"
-                                className="justify-start">
+                                className="group justify-start transition-all duration-200 hover:bg-blue-200 hover:border-blue-300 hover:text-blue-700 hover:shadow-sm">
                                 <Link
                                     href="/"
                                     className="flex items-center gap-2 justify-start">
-                                    <Play /> All Movies
+                                    <Play className="transition-transform duration-200 group-hover:translate-x-1" /> All Movies
                                 </Link>
                             </Button>
                             {genres.map(genre => {
@@ -94,11 +96,11 @@ export default async function RootLayout({
                                         asChild
                                         key={genre.id}
                                         variant="outline"
-                                        className="justify-start">
+                                        className="group justify-start transition-all duration-200 hover:bg-blue-200 hover:border-blue-300 hover:text-blue-700 hover:shadow-sm">
                                         <Link
                                             href={`/genre/${genre.name}/${genre.id}`}
                                             className="flex items-center gap-2 justify-start">
-                                            <Play /> {genre.name}
+                                            <Play className="transition-transform duration-200 group-hover:translate-x-1" /> {genre.name}
                                         </Link>
                                     </Button>
                                 );

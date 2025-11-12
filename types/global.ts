@@ -21,4 +21,6 @@ export type PersonType = {
     name: string;
     character: string;
     profile_path: string;
+    overview : string;
+    original_name : string;
 }

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-export default function TvShowDropdown() {
+export default function PeoDrop() {
     const [open, setOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -30,7 +30,7 @@ export default function TvShowDropdown() {
                 aria-haspopup="menu"
                 aria-expanded={open}
             >
-                TV Show
+                People
                 <svg
                     className="ml-2 -mr-0.5 h-4 w-4 text-gray-500 transition-colors duration-200 group-hover:text-blue-600"
                     xmlns="http://www.w3.org/2000/svg"
@@ -53,10 +53,8 @@ export default function TvShowDropdown() {
                     className="absolute left-0 z-50 mt-2 w-56 origin-top-left rounded-md border border-gray-200 bg-white shadow-lg focus:outline-none"
                 >
                     <div className="py-1" role="none">
-                        <MenuItem href="/" label="Popular" onClick={() => setOpen(false)} />
-                        <MenuItem href="/TopRated" label="Top Rated" onClick={() => setOpen(false)} />
-                        <MenuItem href="/NowPlaying" label="Now Playing" onClick={() => setOpen(false)} />
-                        <MenuItem href="/UpComing" label="Up Coming" onClick={() => setOpen(false)} />
+                        <MenuItem href="/popPeo" label="Popular" onClick={() => setOpen(false)} />
+                        
                     </div>
                 </div>
             ) : null}

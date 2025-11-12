@@ -1,5 +1,4 @@
 import Movie from "@/components/movie";
-import TvLists from "@/components/tvLists";
 import type { MovieType } from "@/types/global";
 import { Key } from "lucide-react";
 
@@ -23,9 +22,12 @@ export default async function Home() {
         <div className="flex flex-wrap gap-4">
             {topRated.map(movie => {
                 return (
-                   <TvLists key={movie.id} movie={movie}/>
+                    <Movie key={movie.id} movie={movie}/>
                 );
             })}
+        </div>
+        <div>
+            
         </div>
     </div>;
 }

@@ -1,9 +1,10 @@
 import Movie from "@/components/movie";
-import type { MovieType } from "@/types/global";
+import Person from "@/components/person";
+import type { MovieType, PersonType } from "@/types/global";
 import { Key } from "lucide-react";
 
-async function fetchUp(): Promise<MovieType[]> {
-    const res = await fetch("https://api.themoviedb.org/3/movie/upcoming", {
+async function fetchPeo(): Promise<PersonType[]> {
+    const res = await fetch("https://api.themoviedb.org/3/person/popular", {
         headers: {
             Authorization: `Bearer ${process.env.TMDB_KEY}`,
         },
@@ -15,14 +16,14 @@ async function fetchUp(): Promise<MovieType[]> {
 }
 
 export default async function Home() {
-    const upComing = await fetchUp();
+    const peoples = await fetchPeo();
 
     return <div>
         <h2 className="text-lg font-bold pb-2 mb-4 border-b">Top Rated</h2>
         <div className="flex flex-wrap gap-4">
-            {upComing.map(movie => {
+            {peoples.map(people => {
                 return (
-                    <Movie key={movie.id} movie={movie}/>
+                   <Person key={people.id} people={people}/>
                 );
             })}
         </div>
