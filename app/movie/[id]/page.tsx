@@ -78,7 +78,7 @@ export default async function Movie({
                                 </div>
                             )}
 
-                            <div className="text-center mt-2">
+                            <div className="text-center mt-2" >
                                 <h4 className="font-bold">
                                     <Link href={`/person/${person.id}`}>
                                         {person.name}

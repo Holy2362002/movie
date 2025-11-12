@@ -10,6 +10,10 @@ export type MovieType = {
     release_date: string;
     poster_path: string;
     backdrop_path: string;
+    first_air_date: string;
+    name : string;
+    vote_average?: number;
+    vote_count?: number;
 };
 
 export type PersonType = {

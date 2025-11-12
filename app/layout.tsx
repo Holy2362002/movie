@@ -8,6 +8,7 @@ import Link from "next/link";
 import type { GenreType } from "@/types/global";
 import { Input } from "@/components/ui/input";
 import { redirect } from "next/navigation";
+import TvShowDropdown from "@/app/Menu/dropDown";
 
 async function fetchGenres(): Promise<GenreType[]> {
     const res = await fetch("https://api.themoviedb.org/3/genre/movie/list", {
@@ -57,10 +58,14 @@ export default async function RootLayout({
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                 <div>
                     <div className="p-4 border-b flex items-center justify-between">
-                        <h1 className="text-2xl font-bold flex gap-2 items-center">
-                            <Clapperboard />
-                            Next Movie
-                        </h1>
+                        <div className="flex items-center gap-3">
+                            <h1 className="text-2xl font-bold flex gap-2 items-center">
+                                <Clapperboard />
+                                Next Movie
+                            </h1>
+                            <TvShowDropdown />
+                        </div>
+                        
                         <form
                             action={search}
                             className="flex items-center gap-2">
